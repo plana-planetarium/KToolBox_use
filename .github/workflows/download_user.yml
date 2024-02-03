@@ -8,6 +8,12 @@ on:
         description: URL
         default: ''
         required: true
+
+      EMAIL_ID:
+        type: string
+        default: ''
+        description: email address (use,split email address)
+        required: false
       
 jobs:
   crawler:
@@ -15,6 +21,12 @@ jobs:
     env:
       # input
       URL: ${{ github.event.inputs.URL }}
+      EMAIL_ID: ${{ github.event.inputs.EMAIL_ID }}
+
+      #email
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+      EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
 
     steps:
       - uses: actions/checkout@v3
