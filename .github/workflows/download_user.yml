@@ -44,7 +44,7 @@ jobs:
         run: |
           export STATUS=1
           export USER='Name is still geting, place wait for the 3rd part.'
-          python email.py
+          python send_email.py
 
       - name: Downloading
         continue-on-error: false
@@ -59,7 +59,7 @@ jobs:
         run: |
           export STATUS='2'
           export USER='Name is still geting, place wait for the 3rd part.'
-          python email.py
+          python send_email.py
 
       - name: Upload File
         uses: actions/upload-artifact@v3
@@ -72,4 +72,4 @@ jobs:
       - name: Send Email (3/3)
         run: |
           export STATUS='3'
-          python email.py
+          python send_email.py
