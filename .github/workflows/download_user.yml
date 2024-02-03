@@ -28,9 +28,6 @@ jobs:
       EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
       EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
 
-      #upload name
-      USER: kemono
-      
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.11
@@ -67,7 +64,7 @@ jobs:
       - name: Upload File
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ USER }}
+          name: ${{ env.USER }}
           path: ./images
           if-no-files-found: error
           retention-days: 90
