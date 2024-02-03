@@ -1,6 +1,6 @@
 import os
 
-url = os.getenv("URL")
+url = os.getenv("URL") + ','
 #url = "https://kemono.su/fanbox/user/16034374, https://kemono.su/fanita/user/16034374," + ','
 url = url.replace(' ', '').split(',')
 user_server = []
