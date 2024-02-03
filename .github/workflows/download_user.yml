@@ -3,16 +3,22 @@ name: 下载kemono上的画师文件
 on:
   workflow_dispatch:
     inputs:
-      URL:
+      url:
         type: string
         description: URL
+        default: ''
+        required: true
+
+      UPLOAD_NAME:
+        type: string
+        description: Upload Name
         default: ''
         required: true
 
       EMAIL_ID:
         type: string
         default: ''
-        description: email address (use,split email address)
+        description: Email Address (use,split email address)
         required: false
       
 jobs:
@@ -21,6 +27,7 @@ jobs:
     env:
       # input
       URL: ${{ github.event.inputs.URL }}
+      UPLOAD_NAME: ${{ github.event.inputs.UPLOAD_NAME }}
       EMAIL_ID: ${{ github.event.inputs.EMAIL_ID }}
 
       #email
@@ -43,7 +50,6 @@ jobs:
       - name: Send Email (1/3)
         run: |
           export STATUS=1
-          export USER='Name is still geting, place wait for the 3rd part.'
           python send_email.py
 
       - name: Downloading
@@ -58,13 +64,12 @@ jobs:
       - name: Send Email (2/3)
         run: |
           export STATUS='2'
-          export USER='Name is still geting, place wait for the 3rd part.'
           python send_email.py
 
       - name: Upload File
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.USER }}
+          name: ${{ env.UPLOAD_NAME }}
           path: ./images
           if-no-files-found: error
           retention-days: 90
