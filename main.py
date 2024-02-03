@@ -10,7 +10,7 @@ for url_down in url:
     if url_down != '':
         os.system("ktoolbox sync-creator " + url_down)
         user_server += [url_down.split('/user/')[0].replace('https://kemono.su/', '')]
-        dir_file = os.listdir('./images')
+        dir_file = os.listdir('./')
         for file in dir_file:
             if file not in user_name and file != 'main.py':
                 user_name += [file]
